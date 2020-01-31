@@ -21,9 +21,9 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#000"
-            app:layout_constraintEnd_toStartOf="@+id/imgFilme"
-            app:layout_constraintStart_toStartOf="@+id/imgFilme"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toStartOf="@+id/imgCharacter"
+            app:layout_constraintStart_toStartOf="@+id/imgCharacter"
             tools:layout_conversion_absoluteHeight="259dp"
             tools:layout_conversion_absoluteWidth="200dp">
 
