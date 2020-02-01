@@ -18,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.ViewHolderCharacter> {
 
-    private List<Result> listaResults;
+    private List<Result> results;
     private ClickDetail clickDetail;
 
     public CharactersAdapter(List<Result> listaResults, ClickDetail clickDetail) {
-        this.listaResults = listaResults;
+        this.results = listaResults;
         this.clickDetail = clickDetail;
     }
 
@@ -35,22 +35,31 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull CharactersAdapter.ViewHolderCharacter holder, int position) {
-        final Result result = listaResults.get(position);
+        final Result result = results.get(position);
         holder.bind(result);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                clickDetail.clickTransition(result);
-            }
-        });
+        holder.itemView.setOnClickListener(view -> clickDetail.clickTransition(result));
     }
 
     @Override
     public int getItemCount() {
-        return listaResults.size();
+        return results.size();
     }
 
-    class ViewHolderCharacter extends RecyclerView.ViewHolder {
+    public void setUpdate(List<Result> results) {
+        if (this.results.isEmpty()){
+            this.results = results;
+        }else {
+            this.results.addAll(results);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void clear(){
+        this.results.clear();
+        notifyDataSetChanged();
+    }
+
+    public class ViewHolderCharacter extends RecyclerView.ViewHolder {
         private ImageView imgCharacter;
         private TextView txtNome;
 
