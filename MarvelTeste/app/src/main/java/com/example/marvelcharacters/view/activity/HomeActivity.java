@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -25,6 +26,7 @@ public class HomeActivity extends AppCompatActivity implements ClickDetail {
     private HomeViewModel homeViewModel;
     private ProgressBar progressBar;
     private List<Result> results = new ArrayList<>();
+    public static final String RESULT_KEY = "result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,10 @@ public class HomeActivity extends AppCompatActivity implements ClickDetail {
 
     @Override
     public void clickTransition(Result result) {
-
+        Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(RESULT_KEY, result);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

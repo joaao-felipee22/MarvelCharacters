@@ -65,8 +65,8 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
 
         public ViewHolderCharacter(@NonNull View itemView) {
             super(itemView);
-            imgCharacter = itemView.findViewById(R.id.imgCharacter);
-            txtNome = itemView.findViewById(R.id.txtNome);
+            imgCharacter = itemView.findViewById(R.id.imgCharacter_card);
+            txtNome = itemView.findViewById(R.id.txt_card);
         }
         public void bind(Result result){
             Picasso.get().load(result.getThumbnail().getPath() + ".jpg").into(imgCharacter);

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint"
     android:layout_width="match_parent"
+    android:background="@drawable/background_details"
     android:layout_height="match_parent"
     tools:context=".view.activity.HomeActivity">
 
@@ -11,6 +12,7 @@
         android:id="@+id/recycler_view_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/card_recycler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,11 +1,14 @@
 
 package com.example.marvelcharacters.model.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 
 
-public class Result {
+public class Result implements Parcelable {
 
     @Expose
     private Comics comics;
@@ -29,6 +32,31 @@ public class Result {
     private Thumbnail thumbnail;
     @Expose
     private List<Url> urls;
+
+    protected Result(Parcel in) {
+        description = in.readString();
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readLong();
+        }
+        modified = in.readString();
+        name = in.readString();
+        resourceURI = in.readString();
+        thumbnail = in.readParcelable(Thumbnail.class.getClassLoader());
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public Comics getComics() {
         return comics;
@@ -118,4 +146,23 @@ public class Result {
         this.urls = urls;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(description);
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(id);
+        }
+        dest.writeString(modified);
+        dest.writeString(name);
+        dest.writeString(resourceURI);
+        dest.writeParcelable(thumbnail, flags);
+    }
 }
