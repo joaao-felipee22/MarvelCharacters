@@ -1,5 +1,5 @@
 
-package com.example.marvelcharacters.model.pojo;
+package com.example.marvelcharacters.model.pojo.character;
 
 import android.os.Parcel;
 import android.os.Parcelable;

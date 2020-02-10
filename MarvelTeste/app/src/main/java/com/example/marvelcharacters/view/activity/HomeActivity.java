@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.marvelcharacters.R;
-import com.example.marvelcharacters.model.pojo.Result;
+import com.example.marvelcharacters.model.pojo.character.Result;
 import com.example.marvelcharacters.view.adapter.CharactersAdapter;
 import com.example.marvelcharacters.view.interfaces.ClickDetail;
 import com.example.marvelcharacters.viewmodel.HomeViewModel;
@@ -32,16 +32,16 @@ public class HomeActivity extends AppCompatActivity implements ClickDetail {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        initView();
-        setLayoutRecycler();
-        loadApi();
+        initViewHome();
+        setLayoutRecyclerHome();
+        loadApiHome();
     }
-    public void setLayoutRecycler(){
+    public void setLayoutRecyclerHome(){
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(adapter);
     }
 
-    public void loadApi(){
+    public void loadApiHome(){
         homeViewModel.getCharacterApi(1);
 
         homeViewModel.getMutable().observe(this, results -> {
@@ -57,11 +57,11 @@ public class HomeActivity extends AppCompatActivity implements ClickDetail {
         });
 
         homeViewModel.getError().observe(this, error -> {
-            Toast.makeText(this, error, Toast.LENGTH_LONG);
+            Toast.makeText(this, error, Toast.LENGTH_LONG).show();
         });
     }
 
-    public void initView(){
+    public void initViewHome(){
         adapter = new CharactersAdapter(results, this);
         recyclerView = findViewById(R.id.recycler_view_home);
         progressBar = findViewById(R.id.progress_bar);

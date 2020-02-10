@@ -2,4 +2,6 @@
     <string name="app_name">MarvelCharacters</string>
     <string name="titulo">Nome Personagem</string>
     <string name="superseilaoq">SuperSeilaOq</string>
+    <string name="see_the_most_expensive_comic">See the most expensive comic</string>
+    <string name="title">Title:</string>
 </resources>

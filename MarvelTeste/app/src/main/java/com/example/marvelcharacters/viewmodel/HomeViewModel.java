@@ -3,8 +3,8 @@ package com.example.marvelcharacters.viewmodel;
 import android.app.Application;
 import android.util.Log;
 
-import com.example.marvelcharacters.model.pojo.Result;
-import com.example.marvelcharacters.repository.CharacterRespository;
+import com.example.marvelcharacters.model.pojo.character.Result;
+import com.example.marvelcharacters.repository.RespositoryApi;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ import static com.example.marvelcharacters.useful.AppUseful.md5;
 public class HomeViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Result>> resultMutableLiveData = new MutableLiveData<>();
-    private CharacterRespository characterRespository = new CharacterRespository();
+    private RespositoryApi respositoryApi = new RespositoryApi();
     private CompositeDisposable disposable = new CompositeDisposable();
     private MutableLiveData<Boolean> loading = new MutableLiveData<>();
     private MutableLiveData<String> liveDataError = new MutableLiveData<>();
@@ -42,10 +42,11 @@ public class HomeViewModel extends AndroidViewModel {
     public LiveData<String> getError(){
         return this.liveDataError;
     }
+
     public void getCharacterApi(int pagina){
 
         disposable.add(
-                characterRespository.getCharacterResponse(pagina, "name", ts, hash, PUBLIC_KEY)
+                respositoryApi.getCharacterResponse(pagina, "name", ts, hash, PUBLIC_KEY)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(disposable1 -> loading.setValue(true))
@@ -60,6 +61,4 @@ public class HomeViewModel extends AndroidViewModel {
         super.onCleared();
         disposable.clear();
     }
-
-
 }

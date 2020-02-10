@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.marvelcharacters.R;
-import com.example.marvelcharacters.model.pojo.Result;
+import com.example.marvelcharacters.model.pojo.character.Result;
 import com.example.marvelcharacters.view.interfaces.ClickDetail;
 import com.squareup.picasso.Picasso;
 
@@ -51,11 +51,6 @@ public class CharactersAdapter extends RecyclerView.Adapter<CharactersAdapter.Vi
         }else {
             this.results.addAll(results);
         }
-        notifyDataSetChanged();
-    }
-
-    public void clear(){
-        this.results.clear();
         notifyDataSetChanged();
     }
 

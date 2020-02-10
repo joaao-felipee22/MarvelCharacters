@@ -1,5 +1,5 @@
 
-package com.example.marvelcharacters.model.pojo;
+package com.example.marvelcharacters.model.pojo.character;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
